@@ -22,17 +22,6 @@ resource "aws_subnet" "public_subnet" {
     Name = "public-subnet"
   }
 }
-# Public Subnet
-resource "aws_subnet" "public_subnet_1b" {
-  vpc_id                  = aws_vpc.main_vpc.id
-  cidr_block              = "10.0.5.0/24"
-  availability_zone       = "ap-south-1b"
-  map_public_ip_on_launch = true
-
-  tags = {
-    Name = "public-subnet-1b"
-  }
-}
 
 # Private Subnet
 resource "aws_subnet" "private_subnet" {
@@ -79,7 +68,7 @@ resource "aws_eip" "nat_eip" {
   domain = "vpc"
 }
 
-# NAT Gateway for Private Subnet
+# create NAT Gateway at Private Subnet
 resource "aws_nat_gateway" "nat" {
   allocation_id = aws_eip.nat_eip.id
   subnet_id     = aws_subnet.public_subnet.id

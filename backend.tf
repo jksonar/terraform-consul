@@ -1,6 +1,6 @@
 terraform {
   backend "consul" {
-    address      = "127.0.0.1:8500"
+    address      = "192.168.56.113:8500"
     scheme       = "http"
     path         = "terraform/state"
     lock         = true
